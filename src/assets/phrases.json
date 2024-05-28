@@ -1,0 +1,22 @@
+
+[
+    {
+    "$id":"/svenska",
+        "svenska":
+        [
+            {"native":"hello", "target":"hallô"}
+        ]
+    },
+    {
+    "$id":"/japanese",
+        "japanese":[
+            {"native":"hello", "target":"こんにちわ"}
+        ]
+    },
+    {
+    "$id":"/espanol",
+        "espanol":[
+            {"native":"hello", "target":"hola"}
+        ]
+    }
+]
