@@ -9,3 +9,15 @@
     text-align: center;
 }
 
+.mat-mdc-unelevated-button.languagebutton {
+    background-color: black;
+    color:aliceblue;
+    border: 2px solid aliceblue;
+    border-color: azure;
+}
+
+
+.mat-mdc-unelevated-button.newlanguage{
+    float: right; 
+    background-color: green;
+}

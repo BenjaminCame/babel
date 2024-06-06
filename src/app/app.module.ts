@@ -7,7 +7,8 @@ import { LanglistComponent } from './langlist/langlist.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { PhraseComponent } from './phrase/phrase.component'
+import { PhraseComponent } from './phrase/phrase.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PhraseComponent } from './phrase/phrase.component'
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   providers: [importProvidersFrom(HttpClientModule)],
   bootstrap: [AppComponent]
