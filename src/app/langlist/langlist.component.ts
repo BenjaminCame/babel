@@ -10,6 +10,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 export class LanglistComponent {
   @Input() posts:any
+  @Input() targetLanguage:string
 
   newphraseform = this.fromBuilder.group({
     language: "",

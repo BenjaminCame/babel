@@ -3,14 +3,12 @@
 </div>
 <div id = body>
     <h1>A list of languages to learn</h1>
-<!-- TODO populate this list dinamically from server -->
     <div style="float:center;">
-        <button mat-flat-button class="languagebutton" (click)="getPost('japanese')"> 日本語 </button>
-        <button mat-flat-button class="languagebutton" (click)="getPost('svenska')"> Swedish </button>
-        <button mat-flat-button class="languagebutton" (click)="getPost('espanol')"> Spanish </button>
+        <span *ngFor= "let language of languages"style="float:center;">
+            <button mat-flat-button class="languagebutton" (click)="getPost(language.table_name)"> {{language.table_name}} </button>
+        </span>
         <button mat-flat-button class="newlanguage" (click)="showInput()"> ADD NEW LIST </button>
         <input style="float:right;" [hidden]="!showInput">
     </div>
-    <!-- TODO only show this when posts have thing in them -->
     <app-langlist *ngIf="posts.length >= 1" [posts] = "posts"></app-langlist>
 </div>
