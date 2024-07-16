@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-langlist',
@@ -9,9 +11,16 @@ import { Component, Input } from '@angular/core';
 export class LanglistComponent {
   @Input() posts:any
 
-  newNative: string
-  newTarget: string
+  newphraseform = this.fromBuilder.group({
+    language: "",
+    newNative: "",
+    newTarget: ""
+  });
 
+  constructor(
+    private http: HttpClient,
+    private fromBuilder: FormBuilder,
+  ){};
   showForm = false;
 
   onClickForm(){
@@ -20,15 +29,20 @@ export class LanglistComponent {
   }
 
   // TODO need correctly post to back end
-  postNewPhrase(){
-    // this.http.post<Iphrase[]>(this.ROOT_URL + myString)
-    // .subscribe(res => {
-    //   console.log('res', res)
-    //   this.posts = res
-    // } )
+  postNewPhrase(newPhrase: object){
+    console.log(newPhrase)
+    this.http.put<JSON>('http://localhost:8080'+'/add/phrase', newPhrase).subscribe(phrase => {
+      console.log('Updated config:', phrase);
+    });
 
-    console.log(this.newNative, " ", this.newTarget)
+    // console.log(this.newNative, " ", this.newPhrase.newTarget)
     this.showForm = false
     // 
+  }
+
+  onSubmit(): void{
+    console.log('newPhrase values', this.newphraseform.value);
+    this.postNewPhrase(this.newphraseform.value)
+    this.newphraseform.reset();
   }
 }

@@ -1,15 +1,18 @@
 <div class="langlist">    
     <div *ngFor= "let post of posts">
         <app-phrase [native]="post.native" [target]="post.target"></app-phrase>    
+        <h1>"post"</h1>
     </div>
 </div>
 <div>
     <!-- TODO add a phrase button -->
     <button mat-flat-button class="languagebutton" (click)="onClickForm()" [hidden]="showForm"> Add a New Phrase </button>
     <div [hidden]="!showForm">
-        Native language: <input type="text" [(ngModel)]="newNative">
-        Target language: <input type="text" [(ngModel)]="newTarget">
-        <!-- TODO change this remove type button muc hame sure post new re querys the sql -->
-        <button mat-flat-button type="button" class="languagebutton" (click)="postNewPhrase()"> Add phrase </button>
+        <form [formGroup]="newphraseform" (ngSubmit)="onSubmit()">
+            Native language: <input id="newNative" type="text" formControlName="newNative">
+            Target language: <input id="newTarget" type="text" formControlName="newTarget">
+            <!-- TODO change this remove type button muc hame sure post new re querys the sql -->
+            <button mat-flat-button type="submit" class="languagebutton"> Add phrase </button>
+        </form>
     </div>
 </div>
