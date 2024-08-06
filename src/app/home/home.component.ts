@@ -16,24 +16,36 @@ export class HomeComponent {
  
   posts: any = []
   languages: any = []
+  tempLanguage: any
   show = false
   constructor(private http: HttpClient){
     this.http.get<any[]>(this.ROOT_URL + "getTables")
-      .subscribe(res => {
+      .subscribe(res => { 
         this.languages = res
     })
   };
   
   // Querey status of sql server
   getPost(targetLanguage: string){  
+    this.tempLanguage = targetLanguage
+    console.log("get post", targetLanguage)
     console.log(this.ROOT_URL + targetLanguage)
-    console.log('onclick event triggered  ' + targetLanguage)
     this.http.get<Iphrase[]>(this.ROOT_URL + targetLanguage)
       .subscribe(res => {
         console.log('res', res)
         this.posts = res
       } )
   };
+
+  createNewLanguage(){
+    
+    let temp:string = (document.getElementById("newlanguage") as HTMLInputElement).value
+    var body = { newLanguage: temp }
+    console.log(body)
+    this.http.post<any>(this.ROOT_URL+"newLangauage",body).subscribe(res =>{
+      console.log(res)
+    })
+  }
 
   showInput(){
     this.show=true

@@ -12,16 +12,17 @@ export class LanglistComponent {
   @Input() posts:any
   @Input() targetLanguage:string
 
+  constructor(
+    private http: HttpClient,
+    private fromBuilder: FormBuilder,
+  ){};
+
   newphraseform = this.fromBuilder.group({
     language: "",
     newNative: "",
     newTarget: ""
   });
 
-  constructor(
-    private http: HttpClient,
-    private fromBuilder: FormBuilder,
-  ){};
   showForm = false;
 
   onClickForm(){
@@ -32,7 +33,7 @@ export class LanglistComponent {
   // TODO need correctly post to back end
   postNewPhrase(newPhrase: object){
     console.log(newPhrase)
-    this.http.put<JSON>('http://localhost:8080'+'/add/phrase', newPhrase).subscribe(phrase => {
+    this.http.post<JSON>('http://localhost:8080'+'/add/phrase', newPhrase).subscribe(phrase => {
       console.log('Updated config:', phrase);
     });
 
@@ -42,6 +43,7 @@ export class LanglistComponent {
   }
 
   onSubmit(): void{
+    // this.newphraseform.setControl(this.targetLanguage)
     console.log('newPhrase values', this.newphraseform.value);
     this.postNewPhrase(this.newphraseform.value)
     this.newphraseform.reset();

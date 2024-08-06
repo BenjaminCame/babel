@@ -4,11 +4,11 @@
 <div id = body>
     <h1>A list of languages to learn</h1>
     <div style="float:center;">
-        <span *ngFor= "let language of languages"style="float:center;">
+        <span *ngFor= "let language of languages" style="float:center;">
             <button mat-flat-button class="languagebutton" (click)="getPost(language.table_name)"> {{language.table_name}} </button>
         </span>
-        <button mat-flat-button class="newlanguage" (click)="showInput()"> ADD NEW LIST </button>
-        <input style="float:right;" [hidden]="!showInput">
+        <button mat-flat-button class="newlanguage" (click)="createNewLanguage()"> ADD NEW LIST </button>
+        <input style="float:right;" [hidden]="!showInput" id="newlanguage">
     </div>
-    <app-langlist *ngIf="posts.length >= 1" [posts] = "posts"></app-langlist>
+    <app-langlist *ngIf="posts.length >= 1" [targetLanguage]="this.tempLanguage" [posts] = "posts"></app-langlist>
 </div>
