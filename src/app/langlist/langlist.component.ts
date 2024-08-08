@@ -17,6 +17,9 @@ export class LanglistComponent {
     private fromBuilder: FormBuilder,
   ){};
 
+  // TODO move this to a global positon in the webpage
+  readonly ROOT_URL = 'http://23.23.85.100:8080/'; //local node js
+
   newphraseform = this.fromBuilder.group({
     language: "",
     newNative: "",
@@ -32,18 +35,14 @@ export class LanglistComponent {
 
   // TODO need correctly post to back end
   postNewPhrase(newPhrase: object){
-    console.log(newPhrase)
-    this.http.post<JSON>('http://localhost:8080'+'/add/phrase', newPhrase).subscribe(phrase => {
+    this.http.post<JSON>(this.ROOT_URL+'add/phrase', newPhrase).subscribe(phrase => {
       console.log('Updated config:', phrase);
     });
-
-    // console.log(this.newNative, " ", this.newPhrase.newTarget)
     this.showForm = false
-    // 
   }
 
   onSubmit(): void{
-    // this.newphraseform.setControl(this.targetLanguage)
+    this.newphraseform.controls['language'].setValue(this.targetLanguage)
     console.log('newPhrase values', this.newphraseform.value);
     this.postNewPhrase(this.newphraseform.value)
     this.newphraseform.reset();

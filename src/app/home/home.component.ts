@@ -26,11 +26,9 @@ export class HomeComponent {
   };
   
   // Querey status of sql server
-  getPost(targetLanguage: string){  
+  getLanguagePhrases(targetLanguage: string){  
     this.tempLanguage = targetLanguage
-    console.log("get post", targetLanguage)
-    console.log(this.ROOT_URL + targetLanguage)
-    this.http.get<Iphrase[]>(this.ROOT_URL + targetLanguage)
+    this.http.get<Iphrase[]>(this.ROOT_URL + "getlanguagephrases/" + targetLanguage)
       .subscribe(res => {
         console.log('res', res)
         this.posts = res
@@ -38,7 +36,6 @@ export class HomeComponent {
   };
 
   createNewLanguage(){
-    
     let temp:string = (document.getElementById("newlanguage") as HTMLInputElement).value
     var body = { newLanguage: temp }
     console.log(body)
