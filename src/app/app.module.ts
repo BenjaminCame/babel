@@ -1,4 +1,4 @@
-import { NgModule, importProvidersFrom } from '@angular/core';
+import { NgModule, importProvidersFrom, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,13 +17,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     PhraseComponent
   ],
+  schemas:[
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   providers: [importProvidersFrom(HttpClientModule)],
   bootstrap: [AppComponent]

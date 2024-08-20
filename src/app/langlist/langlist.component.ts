@@ -41,6 +41,13 @@ export class LanglistComponent {
     this.showForm = false
   }
 
+  deleteLanguage(){
+    console.log("test")
+    this.http.delete<JSON>(this.ROOT_URL+'deletelang/'+this.targetLanguage).subscribe( res => {
+      console.log('Updated config:',res);
+    });
+  }
+
   onSubmit(): void{
     this.newphraseform.controls['language'].setValue(this.targetLanguage)
     console.log('newPhrase values', this.newphraseform.value);
